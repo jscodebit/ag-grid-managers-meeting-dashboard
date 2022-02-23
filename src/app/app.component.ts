@@ -14,11 +14,11 @@ export class AppComponent implements OnInit{
     // using default ColDef
     { headerName: 'Title',field: 'title' },
     { headerName: 'Division',field: 'division' },
-    { headerName: 'Project Owner',field: 'project_owner' },
+    { headerName: 'Project Owner',field: 'project_owner', editable: true },
     // using number column type
-    { headerName: 'Budget',field: 'budget', type: 'numberColumn', cellRenderer: this.CurrencyCellRendererUSD },
+    { headerName: 'Budget',field: 'budget', type: 'numberColumn', editable: true, cellRenderer: this.CurrencyCellRendererUSD },
     // { headerName: '',field: 'year', type: 'numberColumn' },
-    { headerName: 'Status',field: 'status', valueFormatter: this.stringFormatter,
+    { headerName: 'Status',field: 'status', editable: true, valueFormatter: this.stringFormatter,
       filterParams: {
         valueFormatter: this.stringFormatter
       }
@@ -30,8 +30,6 @@ export class AppComponent implements OnInit{
   public defaultColDef: ColDef = {
     // set the default column width
     width: 150,
-    // make every column editable
-    editable: true,
     // make every column use 'text' filter by default
     filter: 'agTextColumnFilter',
     // enable floating filters by default
