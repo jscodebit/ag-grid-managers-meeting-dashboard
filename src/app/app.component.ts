@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ColDef, ColGroupDef } from 'ag-grid-community';
+import { Records } from './records.model';
 import RefData from './shared/refData';
 
 @Component({
@@ -8,15 +9,20 @@ import RefData from './shared/refData';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+  public rowData!: Records[];
   public columnDefs: (ColDef | ColGroupDef)[] = [
     // using default ColDef
     { headerName: 'Title',field: 'title' },
     { headerName: 'Division',field: 'division' },
     { headerName: 'Project Owner',field: 'project_owner' },
     // using number column type
-    { headerName: 'Budget',field: 'budget', type: 'numberColumn' },
+    { headerName: 'Budget',field: 'budget', type: 'numberColumn', cellRenderer: this.CurrencyCellRendererUSD },
     // { headerName: '',field: 'year', type: 'numberColumn' },
-    { headerName: 'Status',field: 'status' },
+    { headerName: 'Status',field: 'status', valueFormatter: this.stringFormatter,
+      filterParams: {
+        valueFormatter: this.stringFormatter
+      }
+    },
     // using date and non-editable column types
     { headerName: 'Created Date',field: 'created', type: ['dateColumn', 'nonEditableColumn'], width: 220 },
     { headerName: 'Modified Date',field: 'modified', type: ['dateColumn', 'nonEditableColumn'], width: 220 }
@@ -68,7 +74,21 @@ export class AppComponent implements OnInit{
       },
     },
   };
-  public rowData!: any[];
+
+  CurrencyCellRendererUSD(params: { value: number}) {
+    var inrFormat = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2
+    });
+    return inrFormat.format(params.value);
+  }
+
+  stringFormatter(params: { value: string }) {
+    var fruit = params.value;
+    var firstChar = fruit.slice(0, 1).toUpperCase();
+    return firstChar + fruit.slice(1);
+  }
 
   constructor() {}
 
