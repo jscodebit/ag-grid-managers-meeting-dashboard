@@ -6,16 +6,47 @@
   <div class="app-main">
     <div class="row align-items-center">
       <div class="col">
-        One of three columns
+        <h4>Project Status</h4>
+        <ul class="d-flex flex-flow list-inline flex-wrap">
+          <li class="list-inline-item" *ngFor="let ele of statusReport">
+            <div class="card d-flex  bg-light mb-3" style="max-width: 18rem;">
+              <div class="card-header">{{ele.param | uppercase}}</div>
+              <div class="card-body">{{ele.count}}</div>
+            </div>
+          </li>
+        </ul>
       </div>
       <div class="col">
-        One of three columns
+        <div class="card">
+          <div class="card-header">
+            Total Budget
+          </div>
+          <div class="card-body p-2">
+            <h5 class="card-title mb-0 ml-2">Project Owners</h5>
+            <ul class="flex flex-flow list-inline flex-wraplass">
+              <li class="list-inline-item m-2" *ngFor="let owner of projectOwner">
+                <button type="button" class="btn btn-primary btn-sm">
+                  {{owner.param}} <span class="badge bg-danger ms-2">{{owner.count}}</span>
+                </button>
+              </li>
+            </ul>
+            
+          </div>
+        </div>
       </div>
       <div class="col">
-        <app-list [items]="result"></app-list>
-    </div>
-  </div>  
-      
+        <div class="card">
+          <div class="card-header">
+            Division List
+          </div>
+          <div class="card-body p-0">
+            <app-list [items]="divisionObject"></app-list>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+</div>    
   <!-- <app-meeting-dashboard [rowData]="rowData"></app-meeting-dashboard> -->
-</div>
+
 <app-footer></app-footer>

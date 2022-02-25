@@ -11,17 +11,22 @@ import RefData from './shared/refData';
 export class AppComponent implements OnInit{
   appTitle: string = 'Project Dashboard';
   rowData!: Record[];
-  result: Division[] = [];
+  divisionObject: Division[] = [];
+  statusReport = [] as any;
+  projectOwner = [] as any;
   
   constructor() { }
 
   ngOnInit(): void {
     this.rowData = RefData.MOCK_DATA;
-    this.findOccurrence(this.rowData, "division");
+    this.divisionObject = this.findOccurrence(this.rowData, "division");
+    this.statusReport = this.findOccurrence(this.rowData, "status");
+    this.projectOwner = this.findOccurrence(this.rowData, "project_owner");
   }
 
   findOccurrence(data: Record[], item: string){
     let obj: { [key: string]: number } = {};
+    let result = [] as any;
     for (let i = 0, j = data.length; i < j; i++) {
       let record = data[i] as Record;
       let itemKey = (record as any)[item];
@@ -35,8 +40,9 @@ export class AppComponent implements OnInit{
       }
     Array.from(Object.keys(obj), ele => {
       console.log(obj[ele]);
-      this.result.push({division: ele, count: obj[ele] });
+      result.push({param: ele, count: obj[ele] });
     });
+    return result;
     // obj[k] gives you count for each unique division.
   }
 }
