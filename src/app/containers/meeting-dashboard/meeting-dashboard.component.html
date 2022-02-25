@@ -1,12 +1,18 @@
 <div style="height: 100%; box-sizing: border-box;">
-    <ag-grid-angular
-      style="width: 100%; height: 100%;"
-      class="ag-theme-alpine"
-      [columnDefs]="columnDefs"
-      [rowData]="rowData"
-      [defaultColDef]="defaultColDef"
-      [defaultColGroupDef]="defaultColGroupDef"
-      [columnTypes]="columnTypes"
-      (cellValueChanged)="onCellValueChanged($event)"
-    ></ag-grid-angular>
+  <div class="row">
+    <div class="col-sm-12">
+      <button class="btn btn-primary">Add New Record</button>
+      <button class="btn btn-secondary" (click)="onExportRecordInformation()">Export to Excel</button> 
+    </div>
+  </div>
+  <ag-grid-angular
+    style="width: 100%; height: 400px;"
+    class="ag-theme-alpine"
+    [columnDefs]="columnDefs"
+    [rowData]="rowData"
+    [defaultColDef]="defaultColDef"
+    [defaultColGroupDef]="defaultColGroupDef"
+    [columnTypes]="columnTypes"
+    (cellValueChanged)="onCellValueChanged($event)"
+  ></ag-grid-angular>
   </div>

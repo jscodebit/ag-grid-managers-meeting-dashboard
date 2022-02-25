@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ColDef, ColGroupDef } from 'ag-grid-community';
+import { Component, Input, OnInit } from '@angular/core';
+import { ColDef, ColGroupDef, GridApi } from 'ag-grid-community';
 import { Records } from '../../records.model';
 import { NotificationService } from '../../service/notification.service';
 import RefData from '../../shared/refData';
@@ -10,7 +10,9 @@ import RefData from '../../shared/refData';
   styleUrls: ['./meeting-dashboard.component.scss']
 })
 export class MeetingDashboardComponent implements OnInit {
-  public rowData!: Records[];
+  private gridApi!: GridApi;
+  @Input() rowData!: Records[];
+  public lookupItems = {};
   public columnDefs: (ColDef | ColGroupDef)[] = [
     // using default ColDef
     { headerName: 'Title',field: 'title' },
@@ -25,8 +27,8 @@ export class MeetingDashboardComponent implements OnInit {
       }
     },
     // using date and non-editable column types
-    { headerName: 'Created Date',field: 'created', type: ['dateColumn', 'nonEditableColumn'], width: 220 },
-    { headerName: 'Modified Date',field: 'modified', type: ['dateColumn', 'nonEditableColumn'], width: 220 }
+    { headerName: 'Created Date',field: 'created', type: ['dateColumn', 'nonEditableColumn'], width: 200 },
+    { headerName: 'Modified Date',field: 'modified', type: ['dateColumn', 'nonEditableColumn'], width: 200 }
   ];
   public defaultColDef: ColDef = {
     // set the default column width
@@ -44,8 +46,7 @@ export class MeetingDashboardComponent implements OnInit {
   public columnTypes: {
     [key: string]: ColDef;
   } = {
-    numberColumn: { width: 130, filter: 'agNumberColumnFilter' },
-    medalColumn: { width: 100, columnGroupShow: 'open', filter: false },
+    numberColumn: { filter: 'agNumberColumnFilter' },
     nonEditableColumn: { editable: false },
     dateColumn: {
       // specify we want to use the date filter
@@ -92,11 +93,14 @@ export class MeetingDashboardComponent implements OnInit {
   constructor(private notifyService: NotificationService) {}
 
   ngOnInit(): void {
-    this.rowData = RefData.MOCK_DATA;
   }
   onCellValueChanged({value}: {value:any}) {
     console.log(value);
     this.showToasterInfo();
+  }
+
+  onExportRecordInformation() {
+    this.gridApi.exportDataAsExcel();
   }
 
   showToasterInfo(){

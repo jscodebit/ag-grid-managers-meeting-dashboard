@@ -11,6 +11,7 @@ import { MeetingDashboardComponent } from './containers/meeting-dashboard/meetin
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ListComponent } from './components/list/list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MeetingDashboardComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
