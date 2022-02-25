@@ -94,17 +94,18 @@ export class MeetingDashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  onCellValueChanged({value}: {value:any}) {
-    console.log(value);
-    this.showToasterInfo();
+  onCellValueChanged(params: any) {
+    //console.log(value);
+    let message = `${params.column.colId} is updated with ${params.value} at rowIndex {${params.rowIndex}}`;
+    this.showToasterInfo(message, "Row Update");
   }
 
   onExportRecordInformation() {
     this.gridApi.exportDataAsExcel();
   }
 
-  showToasterInfo(){
-    this.notifyService.showInfo('Row updates', 'Row updates')  
+  showToasterInfo(message: string, title: string){
+    this.notifyService.showInfo(message, 'Row updates')  
   }
 
 }

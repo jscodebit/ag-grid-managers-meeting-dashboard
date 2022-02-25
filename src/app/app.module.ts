@@ -25,7 +25,10 @@ import { ListComponent } from './components/list/list.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-right'
+    }),
     ToastContainerModule,
     AgGridModule
   ],
