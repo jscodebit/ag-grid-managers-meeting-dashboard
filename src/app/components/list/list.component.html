@@ -1,1 +1,7 @@
-<ul><li></li></ul>
+<ul class="list-group">
+    <li 
+        class="list-group-item d-flex justify-content-between align-items-center" 
+        *ngFor="let item of items">{{item.division}}
+        <span class="badge badge-primary badge-pill">{{item.count}}</span>
+    </li>
+</ul>

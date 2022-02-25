@@ -1,4 +1,4 @@
-export interface Records {
+export interface Record {
     title: string;
     division: string;
     project_owner: string;

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ColDef, ColGroupDef, GridApi } from 'ag-grid-community';
-import { Records } from '../../records.model';
+import { Record } from '../../record.model';
 import { NotificationService } from '../../service/notification.service';
 import RefData from '../../shared/refData';
 
@@ -11,7 +11,7 @@ import RefData from '../../shared/refData';
 })
 export class MeetingDashboardComponent implements OnInit {
   private gridApi!: GridApi;
-  @Input() rowData!: Records[];
+  @Input() rowData!: Record[];
   public lookupItems = {};
   public columnDefs: (ColDef | ColGroupDef)[] = [
     // using default ColDef

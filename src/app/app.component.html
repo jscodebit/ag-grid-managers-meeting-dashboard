@@ -1,12 +1,21 @@
 <app-header [title]="appTitle"></app-header>  
-<div class="app-container row">
-  <div class="col-sm-3">
+<div class="app-container container-fluid">
+  <!-- <div class="col-sm-3">
     <app-sidebar></app-sidebar>
-  </div>
-  <div class="col-sm-9 p-0">
-    <div class="app-main">
-      <app-meeting-dashboard [rowData]="rowData"></app-meeting-dashboard>
+  </div> -->
+  <div class="app-main">
+    <div class="row align-items-center">
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        <app-list [items]="result"></app-list>
     </div>
-  </div>
+  </div>  
+      
+  <!-- <app-meeting-dashboard [rowData]="rowData"></app-meeting-dashboard> -->
 </div>
 <app-footer></app-footer>
