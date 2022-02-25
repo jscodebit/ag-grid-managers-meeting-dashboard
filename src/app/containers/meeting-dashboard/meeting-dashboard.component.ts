@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ColDef, ColGroupDef } from 'ag-grid-community';
-import { Records } from '../records.model';
-import { NotificationService } from '../service/notification.service';
-import RefData from '../shared/refData';
+import { Records } from '../../records.model';
+import { NotificationService } from '../../service/notification.service';
+import RefData from '../../shared/refData';
 
 @Component({
   selector: 'app-meeting-dashboard',

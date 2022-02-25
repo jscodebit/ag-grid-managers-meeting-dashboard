@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ColDef, ColGroupDef } from 'ag-grid-community';
-import { Records } from './records.model';
-import { NotificationService } from './service/notification.service';
-import RefData from './shared/refData';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +6,7 @@ import RefData from './shared/refData';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+  appTitle: string = 'Project Dashboard';
   constructor() { }
 
   ngOnInit(): void {

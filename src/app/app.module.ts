@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,12 +7,18 @@ import { ToastContainerModule, ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { NotificationService } from './service/notification.service';
-import { MeetingDashboardComponent } from './meeting-dashboard/meeting-dashboard.component';
+import { MeetingDashboardComponent } from './containers/meeting-dashboard/meeting-dashboard.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MeetingDashboardComponent
+    MeetingDashboardComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
