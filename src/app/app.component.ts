@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
   divisionObject: Division[] = [];
   statusReport = [] as any;
   projectOwner = [] as any;
+  totalProjectBudget: number = 0;
   
   constructor() { }
 
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit{
     this.divisionObject = this.findOccurrence(this.rowData, "division");
     this.statusReport = this.findOccurrence(this.rowData, "status");
     this.projectOwner = this.findOccurrence(this.rowData, "project_owner");
+    this.fetchTotalBudgetInformation();
   }
 
   findOccurrence(data: Record[], item: string){
@@ -34,15 +36,21 @@ export class AppComponent implements OnInit{
       if (obj[itemKey]) {
           obj[itemKey]++;
       } else{
-          console.log(obj[itemKey]);
           obj[itemKey] = 1;
         }
       }
     Array.from(Object.keys(obj), ele => {
-      console.log(obj[ele]);
       result.push({param: ele, count: obj[ele] });
     });
     return result;
     // obj[k] gives you count for each unique division.
+  }
+
+  fetchTotalBudgetInformation(){
+    let sum: number = 0;
+    this.rowData.forEach((arrayItem) => {
+      sum += arrayItem['budget'];
+    });
+    this.totalProjectBudget = Math.floor(sum * 100) / 100;
   }
 }
